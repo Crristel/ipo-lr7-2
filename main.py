@@ -1,11 +1,11 @@
 import json
-kvalf=int(input("Введите нужную вам квалификацию:"))
+num=int(input("Введите нужную вам квалификацию:"))
 find = False
 with open("dump.json", 'r', encoding='utf-8') as file: 
     read_file = json.load(file)
 for i in read_file:
      if i.get("model") == "data.skill":
-       if i["fields"].get("specialty") == kvalf: 
+       if i["fields"].get("specialty") == num: 
            skill_code = i["fields"].get("code")
            skill_title = i["fields"].get("title")
            find=True
