@@ -12,21 +12,20 @@ with open("dump.json", 'r', encoding='utf-8') as file:  # Открываем ф�
                 skill_title = skill["fields"].get("title")  # Получаем название квалификации
                 skill_specialty=skill["fields"].get("specialty") #получаем код специальности
                 find = True  # Устанавливаем find в True, так как квалификация найдена
-
+                
+if not find:  # Проверяем, была ли найдена квалификация
+    print("Не найдено".center(36,"="))  #вывод на консоль
+    exit()
 for specialty in read_file:  # Перебираем каждый элемент в read_file
     if specialty.get("model") == "data.specialty":  # Проверяем, является ли значение "model" = data.specialty"
         specialty_code = specialty["fields"].get("code")  # Получаем код специальности
-    if specialty.get("model") == "data.specialty":
         specialty_pk = specialty.get("pk") #получаем код pk
-
 
         if skill_specialty == specialty_pk:  # Проверяем, одинаковое ли значение у pk и кода специальности 
             specialty_title = specialty["fields"].get("title")  # Получаем название специальности
             specialty_educational = specialty["fields"].get("c_type")  # Получаем тип образования 
             specialty_c = specialty["fields"].get("code")  # Получаем код специальности
 
-if not find:  # Проверяем, была ли найдена квалификация
-    print("Не найдено".center(36,"="))  #вывод на консоль
 else:  # Если квалификация найдена
     print("Найдено".center(36,"=")) # Вывод на консоль
     print(f"{specialty_c} >> Специальность '{specialty_title}', {specialty_educational}")  #вывод на консоль 
